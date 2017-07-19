@@ -1,0 +1,16 @@
+// create-react-app app
+
+// npm init -y
+
+// npm i --save express express-session body-parser massive passport passport-auth0 cors request
+
+// npm install --save auth0-js
+
+
+// server.js: successRedirect: 'http://localhost:4000' 
+
+// package.json: "proxy": "http://localhost:4005", 
+
+// package.json: "start": "PORT=4000 react-scripts start",
+
+// in frontend as long as the link is not in the render you can just do /endpoint but if it is in the render you have to do http://localhost:4005/endpoint. 
