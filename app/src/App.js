@@ -13,14 +13,14 @@ class App extends Component {
         }
     }
 
-    // componentWillMount() {
-    // getUser().then(user => {
-    //   this.setState({
-    //     user: user
-    //   })
-    // })
-    // console.log(this.state.user)
-    // }
+    componentDidMount() {
+    getUser().then(user => {
+      this.setState({
+        user: user
+      })
+    console.log(this.state.user)
+    })
+    }
 
   render() {
     return (

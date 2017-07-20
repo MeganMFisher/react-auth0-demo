@@ -8,7 +8,6 @@ export function getUser() {
       console.log(err);
     })
 }
-getUser()
 
 export function postFavs(favs) {
      return axios.post('/postFav' + favs)
