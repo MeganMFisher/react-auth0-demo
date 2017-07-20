@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getOptions } from '../services/user';
 
-export default class Store extends Component {
+export default class Options extends Component {
     constructor(props) {
         super(props);
 
@@ -35,10 +35,4 @@ export default class Store extends Component {
              </div>
          )
      }
-
-
-
-
-
-
 }

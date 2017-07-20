@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getUser } from './services/user';
-import Option from './components/options';
+import Options from './components/options';
+import Favorites from './components/favorites';
 import './App.css';
 
 class App extends Component {
@@ -12,14 +13,14 @@ class App extends Component {
         }
     }
 
-    componentWillMount() {
-    getUser().then(user => {
-      this.setState({
-        user: user
-      })
-    })
-    console.log(this.state.user)
-    }
+    // componentWillMount() {
+    // getUser().then(user => {
+    //   this.setState({
+    //     user: user
+    //   })
+    // })
+    // console.log(this.state.user)
+    // }
 
   render() {
     return (
@@ -31,8 +32,14 @@ class App extends Component {
         <h2>Welcome</h2>
 
         <div>
-          <Option />
+          <h3>Options</h3>
+          <Options />
         </div>
+
+         <div>
+          <h3>Favorites</h3>
+          <Favorites />
+        </div> 
       </div>
     );
   }
