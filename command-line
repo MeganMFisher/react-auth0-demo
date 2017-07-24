@@ -14,3 +14,12 @@
 // package.json: "start": "PORT=4000 react-scripts start",
 
 // in frontend as long as the link is not in the render you can just do /endpoint but if it is in the render you have to do http://localhost:4005/endpoint. 
+
+
+
+ "proxy": "http://localhost:4005", //backend port
+
+
+   "scripts": {
+    "start": "PORT=4000 react-scripts start", //will always start frontend on defined port. 
+   }

@@ -9,20 +9,26 @@ class App extends Component {
         super()
 
         this.state = {
-            user: []
+            user: [],
+            favorites: []
         }
     }
 
-    componentDidMount() {
-    getUser().then(user => {
+  componentDidMount() {
+    getUser().then(res => {
+      console.log(res)
       this.setState({
-        user: user
+        user: res,
+        favorites: res.favorites
       })
-    console.log(this.state.user)
+    // console.log(this.state.user.favorites)
     })
-    }
+  }
 
   render() {
+ 
+
+
     return (
       <div>
         <button className="loginButton">
@@ -30,16 +36,17 @@ class App extends Component {
         </button>
 
         <h2>Welcome</h2>
-
-        <div>
+      <div className='optionsAndFavsBox'>
+        <div className='optionsBox'>
           <h3>Options</h3>
           <Options />
         </div>
 
-         <div>
+         <div className='favoritesBox'>
           <h3>Favorites</h3>
           <Favorites />
         </div> 
+        </div>
       </div>
     );
   }

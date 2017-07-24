@@ -20,11 +20,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(express.static('./public'));
+app.use(express.static('../app/src'));
 
-massive(config.database).then ((db) => {
- 	app.set('db', db);
-});
+massive(config.database).then(db => {
+  app.set('db', db)
+}).catch((err) => {
+  console.log(err)
+})
 
 
 /////////////
@@ -38,7 +40,6 @@ passport.use(new Auth0Strategy({
     callbackURL: '/auth/callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
-
     var db = app.get('db')
     //Find user in database
     db.getUserByAuthId(profile.id).then(function (user) {
@@ -90,6 +91,7 @@ app.get('/auth/callback',
   function (req, res) {
     
     res.status(200).send(req.user);
+    console.log(req.user)
   })
 
 app.get('/auth/me', function (req, res) {
@@ -100,7 +102,7 @@ app.get('/auth/me', function (req, res) {
 
 app.get('/auth/logout', function (req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('http://localhost:4000');
 })
 
 
