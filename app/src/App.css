@@ -28,14 +28,16 @@
 
 .optionsBox {
   width: 50%;
-  background: blue;
   padding: 20px 20px;
 }
 
 .favoritesBox {
   width: 50%;
-  background: green;
   padding: 20px 20px;
+}
+
+h3 {
+  color: white;
 }
 
 @keyframes App-logo-spin {

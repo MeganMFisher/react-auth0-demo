@@ -18,8 +18,8 @@ class App extends Component {
     getUser().then(res => {
       console.log(res)
       this.setState({
-        user: res,
-        favorites: res.favorites
+        user: res
+        // favorites: res.favorites
       })
     // console.log(this.state.user.favorites)
     })
@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
  
-
+    // console.log(this.state.user.favorites)
 
     return (
       <div>
@@ -35,15 +35,16 @@ class App extends Component {
             <a href="http://localhost:4005/auth">Login with Auth0</a>
         </button>
 
-        <h2>Welcome</h2>
+         <h2>Welcome { this.state.user ? this.state.user.username + '!': '' }</h2> 
+
       <div className='optionsAndFavsBox'>
         <div className='optionsBox'>
-          <h3>Options</h3>
+          <h3>Options:</h3>
           <Options />
         </div>
 
          <div className='favoritesBox'>
-          <h3>Favorites</h3>
+          <h3>Favorites:</h3>
           <Favorites />
         </div> 
         </div>
