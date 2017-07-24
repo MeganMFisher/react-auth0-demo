@@ -16,12 +16,13 @@ class App extends Component {
 
   componentDidMount() {
     getUser().then(res => {
+      const favs = res ? res.favorites : []
       console.log(res)
       this.setState({
-        user: res
-        // favorites: res.favorites
+        user: res,
+        favorites: favs
       })
-    // console.log(this.state.user.favorites)
+      console.log(this.state.favorites)
     })
   }
 
@@ -33,7 +34,7 @@ class App extends Component {
       <div>
         <div className='navBar'>
          <h2>Welcome { this.state.user ? this.state.user.username + '!': '' }</h2> 
-         
+
           { this.state.user ? null : <a href='http://localhost:4005/auth'><button className='loginButton'>LOGIN</button></a> }
         { this.state.user ? <a href='http://localhost:4005/auth/logout'><button className='loginButton'>LOGOUT</button></a> : null }
 
