@@ -27,15 +27,19 @@ class App extends Component {
 
   render() {
  
-    // console.log(this.state.user.favorites)
+    
 
     return (
       <div>
-        <button className="loginButton">
-            <a href="http://localhost:4005/auth">Login with Auth0</a>
-        </button>
-
+        <div className='navBar'>
          <h2>Welcome { this.state.user ? this.state.user.username + '!': '' }</h2> 
+         
+          { this.state.user ? null : <a href='http://localhost:4005/auth'><button className='loginButton'>LOGIN</button></a> }
+        { this.state.user ? <a href='http://localhost:4005/auth/logout'><button className='loginButton'>LOGOUT</button></a> : null }
+
+         </div>
+
+         {/* <h2>{this.state.user ? this.state.user.favorites : 'ugh'}</h2> */}
 
       <div className='optionsAndFavsBox'>
         <div className='optionsBox'>
