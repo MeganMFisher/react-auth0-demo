@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getOptions } from '../services/user';
+import { getOptions, postFavs } from '../services/user';
 
 export default class Options extends Component {
     constructor(props) {
@@ -7,8 +7,11 @@ export default class Options extends Component {
 
         this.state = {
             options: [],
-            fav: ''
+            authid: 'google-oauth2|112174683459396059604'
         }
+
+        // console.log(this.props.authid)
+    
 
         this.handleClick = this.handleClick.bind(this)
     }
@@ -18,15 +21,19 @@ componentDidMount() {
       this.setState({
         options: options
       })
-      console.log(this.state.options)
     })
 }
 
-handleClick(event) {
-    this.setState({
-        fav: event.option
+handleClick(fav) {
+    const favs = { 
+        favorite: fav.option,
+        authid: this.state.authid
+    }
+    postFavs(favs)
+    .then((res) => {
+      console.log('Yummio Hummio')
+    //   getUser()
     })
-    console.log(this.state.fav)
 }
 
     render() {

@@ -20,14 +20,14 @@ class App extends Component {
   componentDidMount() {
     getUser().then(res => {
       const favs = res ? res.favorites : []
-      const id = res ? res.authID : []
+      const id = res ? res.authid : ''
       this.setState({
         user: res,
         userId: id,
         favorites: favs
       })
+    // console.log(this.state.userId)
     })
-    console.log(this.state.userId)
   }
 
   handleClick(notFav) {
@@ -39,9 +39,11 @@ class App extends Component {
   }
 
   render() {
+
  
     const favorites = this.state.favorites.map((e, i) => (
-                <h3 key={i} onClick={() => this.handleClick(e)}>{ e.favorite }</h3>
+                <h3 key={i} onClick={() => this.handleClick(e)}             authid={this.state.userId} 
+>{ e.favorite } </h3>
     ))
     return (
       <div>

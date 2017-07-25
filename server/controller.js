@@ -1,6 +1,7 @@
 module.exports = {
 
     postFav: (req, res) => {
+        console.log(req.body)
         var params = [
             req.body.authid,
             req.body.favorite
