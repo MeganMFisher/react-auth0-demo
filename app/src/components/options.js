@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { getOptions, postFavs } from '../services/user';
+import { getOptions } from '../services/user';
 
 export default class Options extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            options: [],
-            authid: 'google-oauth2|112174683459396059604'
+            options: []
         }
-
-        // console.log(this.props.authid)
-    
 
         this.handleClick = this.handleClick.bind(this)
     }
@@ -25,16 +21,9 @@ componentDidMount() {
 }
 
 handleClick(fav) {
-    const favs = { 
-        favorite: fav.option,
-        authid: this.state.authid
-    }
-    postFavs(favs)
-    .then((res) => {
-      console.log('Yummio Hummio')
-    //   getUser()
-    })
+    this.props.action(fav);
 }
+
 
     render() {
 

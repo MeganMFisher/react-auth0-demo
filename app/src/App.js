@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUser, deleteFav } from './services/user';
+import { getUser, deleteFav,  postFavs } from './services/user';
 import Options from './components/options';
 import './App.css';
 
@@ -9,7 +9,7 @@ class App extends Component {
 
         this.state = {
             user: [],
-            userId: '',
+            authid: '',
             favorites: [],
             notFav: ''
         }
@@ -23,18 +23,31 @@ class App extends Component {
       const id = res ? res.authid : ''
       this.setState({
         user: res,
-        userId: id,
+        authid: id,
         favorites: favs
       })
-    // console.log(this.state.userId)
+    console.log(this.state.authid)
     })
   }
 
   handleClick(notFav) {
     deleteFav(notFav.favorite)
     .then((res) => {
-      console.log('deleted smeeted')
-      getUser()
+      // getUser()
+    })
+  }
+
+  addFav(fav) {
+    // const authId = this.state.authid ? this.state.authid : 'stupidFace'
+    // console.log(authId)
+      const favs = { 
+        favorite: fav.option,
+        authid: 'google-oauth2|112174683459396059604'
+    }
+    console.log(favs)
+    postFavs(favs)
+    .then((res) => {
+      // getUser()
     })
   }
 
@@ -42,7 +55,7 @@ class App extends Component {
 
  
     const favorites = this.state.favorites.map((e, i) => (
-                <h3 key={i} onClick={() => this.handleClick(e)}             authid={this.state.userId} 
+                <h3 key={i} onClick={() => this.handleClick(e)}  
 >{ e.favorite } </h3>
     ))
     return (
@@ -58,7 +71,7 @@ class App extends Component {
       <div className='optionsAndFavsBox'>
         <div className='optionsBox'>
           <h3>Options:</h3>
-          <Options />
+          <Options action={this.addFav} />
         </div>
 
          <div className='favoritesBox'>
