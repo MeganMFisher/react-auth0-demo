@@ -10,14 +10,15 @@ export function getUser() {
 }
 
 export function postFavs(favs) {
-     return axios.post('/postFav' + favs)
-//    return axios.post('/postFav' + favs).then(res => res.data)
+     return axios.post('/postFav', favs)
+//    return axios.post('/postFav', favs).then(res => res.data)
 }
 
 export function deleteFav(notFav) {
-    return axios.delete('/deleteFav' + notFav)
-//    return axios.delete('/deleteFav' + notFav).then(res => res.data)
+    console.log(notFav)
+    return axios.delete('http://localhost:4005/deleteFav/' + notFav)
 }
+
 
 export function getOptions() {
    return axios.get('/getOptions').then(res => res.data)

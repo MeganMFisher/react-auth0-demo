@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUser } from './services/user';
+import { getUser, deleteFav } from './services/user';
 import Options from './components/options';
 import './App.css';
 
@@ -9,26 +9,39 @@ class App extends Component {
 
         this.state = {
             user: [],
-            favorites: []
+            userId: '',
+            favorites: [],
+            notFav: ''
         }
+
+        this.handleClick = this.handleClick.bind(this)
     }
 
   componentDidMount() {
     getUser().then(res => {
       const favs = res ? res.favorites : []
-      console.log(res)
+      const id = res ? res.authID : []
       this.setState({
         user: res,
+        userId: id,
         favorites: favs
       })
-      console.log(this.state.favorites)
+    })
+    console.log(this.state.userId)
+  }
+
+  handleClick(notFav) {
+    deleteFav(notFav.favorite)
+    .then((res) => {
+      console.log('deleted smeeted')
+      getUser()
     })
   }
 
   render() {
  
     const favorites = this.state.favorites.map((e, i) => (
-                <h3 key={i}>{ e.favorite }</h3>
+                <h3 key={i} onClick={() => this.handleClick(e)}>{ e.favorite }</h3>
     ))
     return (
       <div>

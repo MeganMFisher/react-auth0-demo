@@ -21,6 +21,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static('../app/src'));
+app.use(cors())
 
 massive(config.database).then(db => {
   app.set('db', db)

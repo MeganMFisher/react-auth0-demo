@@ -7,10 +7,13 @@ export default class Options extends Component {
 
         this.state = {
             options: [],
+            fav: ''
         }
+
+        this.handleClick = this.handleClick.bind(this)
     }
 
-    componentDidMount() {
+componentDidMount() {
     getOptions().then(options => {
       this.setState({
         options: options
@@ -19,10 +22,17 @@ export default class Options extends Component {
     })
 }
 
+handleClick(event) {
+    this.setState({
+        fav: event.option
+    })
+    console.log(this.state.fav)
+}
+
     render() {
 
         const options = this.state.options.map((option, i) => (
-            <ul key={i}>
+            <ul key={i} onClick={() => this.handleClick(option)}>
                 <h3>{ option.option }</h3>
             </ul>
         ))
