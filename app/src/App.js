@@ -9,7 +9,7 @@ class App extends Component {
 
         this.state = {
             user: [],
-            authid: '',
+            authid: [],
             favorites: [],
             notFav: ''
         }
@@ -20,7 +20,7 @@ class App extends Component {
   componentDidMount() {
     getUser().then(res => {
       const favs = res ? res.favorites : []
-      const id = res ? res.authid : ''
+      const id = res ? res.authid : []
       this.setState({
         user: res,
         authid: id,
@@ -38,13 +38,10 @@ class App extends Component {
   }
 
   addFav(fav) {
-    // const authId = this.state.authid ? this.state.authid : 'stupidFace'
-    // console.log(authId)
       const favs = { 
         favorite: fav.option,
-        authid: 'google-oauth2|112174683459396059604'
+        authid: fav.authId
     }
-    console.log(favs)
     postFavs(favs)
     .then((res) => {
       // getUser()
@@ -53,10 +50,11 @@ class App extends Component {
 
   render() {
 
+    const authId = this.state.authid
+    console.log(authId)
  
     const favorites = this.state.favorites.map((e, i) => (
-                <h3 key={i} onClick={() => this.handleClick(e)}  
->{ e.favorite } </h3>
+        <h3 key={i} onClick={() => this.handleClick(e)}>{ e.favorite } </h3>
     ))
     return (
       <div>
@@ -71,7 +69,7 @@ class App extends Component {
       <div className='optionsAndFavsBox'>
         <div className='optionsBox'>
           <h3>Options:</h3>
-          <Options action={this.addFav} />
+          <Options action={this.addFav} authId={this.state.authid}/>
         </div>
 
          <div className='favoritesBox'>

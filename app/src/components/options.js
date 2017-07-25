@@ -21,7 +21,13 @@ componentDidMount() {
 }
 
 handleClick(fav) {
-    this.props.action(fav);
+    var favorite = {
+        option: fav.option,
+        authId: this.props.authId
+    }
+    console.log(favorite)
+
+    this.props.action(favorite);
 }
 
 
