@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getUser } from './services/user';
 import Options from './components/options';
-import Favorites from './components/favorites';
 import './App.css';
 
 class App extends Component {
@@ -28,8 +27,9 @@ class App extends Component {
 
   render() {
  
-    
-
+    const favorites = this.state.favorites.map((e, i) => (
+                <h3 key={i}>{ e.favorite }</h3>
+    ))
     return (
       <div>
         <div className='navBar'>
@@ -40,8 +40,6 @@ class App extends Component {
 
          </div>
 
-         {/* <h2>{this.state.user ? this.state.user.favorites : 'ugh'}</h2> */}
-
       <div className='optionsAndFavsBox'>
         <div className='optionsBox'>
           <h3>Options:</h3>
@@ -50,7 +48,7 @@ class App extends Component {
 
          <div className='favoritesBox'>
           <h3>Favorites:</h3>
-          <Favorites />
+          { favorites }
         </div> 
         </div>
       </div>
