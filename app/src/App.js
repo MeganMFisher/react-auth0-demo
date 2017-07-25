@@ -26,14 +26,13 @@ class App extends Component {
         authid: id,
         favorites: favs
       })
-    console.log(this.state.authid)
     })
   }
 
   handleClick(notFav) {
     deleteFav(notFav.favorite)
     .then((res) => {
-      // getUser()
+      getUser()
     })
   }
 
@@ -44,14 +43,11 @@ class App extends Component {
     }
     postFavs(favs)
     .then((res) => {
-      // getUser()
+      getUser()
     })
   }
 
   render() {
-
-    const authId = this.state.authid
-    console.log(authId)
  
     const favorites = this.state.favorites.map((e, i) => (
         <h3 key={i} onClick={() => this.handleClick(e)}>{ e.favorite } </h3>

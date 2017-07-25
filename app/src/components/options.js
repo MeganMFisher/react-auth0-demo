@@ -25,8 +25,6 @@ handleClick(fav) {
         option: fav.option,
         authId: this.props.authId
     }
-    console.log(favorite)
-
     this.props.action(favorite);
 }
 
