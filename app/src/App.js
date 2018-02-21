@@ -32,7 +32,11 @@ class App extends Component {
   handleClick(notFav) {
     deleteFav(notFav.favorite)
     .then((res) => {
-      getUser()
+      getUser().then(res => {
+      this.setState({
+        favorites: res.favorites
+      })
+    })
     })
   }
 
@@ -43,7 +47,7 @@ class App extends Component {
     }
     postFavs(favs)
     .then((res) => {
-      getUser()
+      // getUser()
     })
   }
 
